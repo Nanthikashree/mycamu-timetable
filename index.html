@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyCamu Timetable Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body><div class="container">
+
+    <div class="header">
+    <h1>MyCamu Timetable Generator</h1>
+    <p>Paste your enrollment list or upload a PDF — we'll build your perfect timetable</p>
+    <div class="quote-box">
+        <span class="quote-icon">💬</span>
+        <p id="quote-text"></p>
+    </div>
+</div>
+
+    <div class="input-section">
+
+   <textarea id="enrollment-text" placeholder="Paste your MyCamu enrollment list here..."></textarea>
+
+    <button class="load-btn" onclick="loadCourses()">Load Courses 📋</button>
+
+    <div id="courses-section" class="courses-section hidden">
+        <h2>Select Your Courses</h2>
+        <p class="courses-hint">Tick only the courses you want to enroll in</p>
+        <div id="courses-list"></div>
+    </div>
+
+</div>
+
+    <div class="preferences-section">
+        <h2>Your Preferences</h2>
+
+        <div class="pref-group">
+            <label>Skip morning classes (8:00 - 10:00)</label>
+            <input type="checkbox" id="skip-morning">
+        </div>
+
+        <div class="pref-group">
+            <label>Skip evening classes (15:00 - 17:00)</label>
+            <input type="checkbox" id="skip-evening">
+        </div>
+
+        <div class="pref-group">
+            <label>Day off</label>
+            <select id="day-off">
+    <option value="none">No preference</option>
+    <option value="Monday">Monday</option>
+    <option value="Tuesday">Tuesday</option>
+    <option value="Wednesday">Wednesday</option>
+    <option value="Thursday">Thursday</option>
+    <option value="Friday">Friday</option>
+    <option value="Saturday">Saturday</option>
+</select>
+        </div>
+
+    </div>
+
+    <button class="generate-btn" onclick="generateTimetable()">Generate My Timetable ✨</button>
+
+    <div id="loading" class="loading hidden">
+        <p>El is cooking your timetable... 🍳</p>
+    </div>
+
+    <div id="results" class="results hidden"></div>
+
+</div>
+<div class="footer">
+    <p>Built with Love by <span class="name">Nanthikashree T (BE.CSE)</span></p>
+    <div class="footer-links">
+        <span>📧 nanthikashree@gmail.com</span>
+        <a href="https://www.linkedin.com/in/nanthikashree-thennarasan-2765223a9/" target="_blank">💼 LinkedIn</a>
+        <a href="https://github.com/Nanthikashree" target="_blank">🐙 GitHub</a>
+    </div>
+</div><script src="script.js"></script>
+</body>
+</html>
