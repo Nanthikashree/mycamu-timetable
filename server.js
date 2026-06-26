@@ -3,9 +3,7 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const mammoth = require('mammoth');
-
-const API_KEY = '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';
-
+const API_KEY = process.env.GEMINI_API_KEY;
 const server = http.createServer((req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
@@ -42,21 +40,16 @@ const server = http.createServer((req, res) => {
             const { prompt } = JSON.parse(body);
 
             const payload = JSON.stringify({
-                model: 'llama-3.3-70b-versatile',
-                messages: [{ role: 'user', content: prompt }],
-                max_tokens: 4000
-            });
-
+    contents: [{ parts: [{ text: prompt }] }]
+});
             const options = {
-                hostname: 'api.groq.com',
-                path: '/openai/v1/chat/completions',
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${API_KEY}`
-                }
-            };
-
+    hostname: 'generativelanguage.googleapis.com',
+    path: `/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${API_KEY}`,
+    method: 'POST',
+    headers: {
+        'Content-Type': 'application/json'
+    }
+};
             const apiReq = https.request(options, apiRes => {
                 let data = '';
                 apiRes.on('data', chunk => data += chunk);
@@ -64,7 +57,7 @@ const server = http.createServer((req, res) => {
                     console.log('API Response:', data);
                     try {
                         const parsed = JSON.parse(data);
-                        const text = parsed.choices[0].message.content;
+                        const text = parsed.candidates[0].content.parts[0].text;
                         res.writeHead(200, { 'Content-Type': 'application/json' });
                         res.end(JSON.stringify({ result: text }));
                     } catch(e) {
