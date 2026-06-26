@@ -6,7 +6,5 @@
   "scripts": {
     "start": "node server.js"
   },
-  "dependencies": {
-    "mammoth": "^1.6.0"
-  }
+  "dependencies": {}
 }
