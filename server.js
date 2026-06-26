@@ -75,4 +75,4 @@ const server = http.createServer((req, res) => {
     });
 });
 
-server.listen(process.env.PORT || 3000, '0.0.0.0', () => console.log('Server running!'));
+server.listen(process.env.PORT || 8080, '0.0.0.0', () => console.log('Server running!'));
